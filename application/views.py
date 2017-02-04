@@ -20,3 +20,7 @@ def View(request):
 	hospitals = Hospital.objects.all()
 	context = {'hospitals':hospitals}
 	return render(request, 'view.html', context)
+
+def Landing2(request):
+	context = {}
+	return render(request, 'landing2.html', context)

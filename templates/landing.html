@@ -197,6 +197,20 @@
 </div>
 
 
+<!-- Transfering -->
+<div id="transferring" class="ui small modal">
+	<div id="transferringsend" class="ui green button">Send</div>
+	<!-- cancel button -->
+</div>
+<!-- Additional req -->
+<div id="additionalreq" class="ui small modal">
+	<div id="additionalreqaccept" class="ui green button">Accept</div>
+	<div id="additionalreqreject" class="ui green button">Reject</div>
+	<!-- cancel button -->
+</div>
+
+
+
 
 </body>
 
@@ -238,6 +252,26 @@ $(document).keydown(function(n) { // hospital found with send info #3
 		$('#searchhospital').modal('hide');
 		$('#foundhospital2').modal('show');
    }
+});
+
+
+$(document).keydown(function(n) { // transferring shit
+   if (n.keyCode == 54) {
+		$('#transferring').modal('show');
+   }
+});
+
+$("#transferringsend").click(function() { // send button lang
+	$('#transferring').modal('hide');
+	$('#additionalreq').modal('show');
+});
+
+$("#additionalreqaccept").click(function() { // send button lang
+	$('#additionalreq').modal('hide');
+	$('#searchambulance').modal('show');
+});
+$("#additionalreqreject").click(function() { // send button lang
+	$('#additionalreq').modal('hide');
 });
 
 $("#okfound").click(function() { // send button lang
