@@ -14,3 +14,7 @@ def Login(request):
 def Landing(request):
 	context = {}
 	return render(request, 'landing.html', context)
+
+def View(request):
+	context = {}
+	return render(request, 'view.html', context)

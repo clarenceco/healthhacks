@@ -1,7 +1,3 @@
-  <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css"> 
-<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script> <script src="semantic/dist/semantic.min.js"></script> 
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,11 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
   <!-- Site Properties -->
-  <title>MedAccessPH Landing</title>
+  <title>MedAccessPH</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Lato|Roboto" rel="stylesheet"> 
 
 </head>
   <style type="text/css">
@@ -23,70 +18,60 @@
 
     }
 
-    #uprinticon {
-      float: left; 
-      height: 30px;
-      width: 30px;
-      margin: 0px 10px 0px 0px;
-      max-width: 100%;
-    }
-
-
   </style>
 
 <body>
 <!-- NAV BAR -->
-<div class="ui teal inverted secondary menu" style="font-family: Lato;">
-  <a href="#" class="item">
-    <img src="kristy.png" id="uprinticon" class="ui circular image">
-    MedAccessPH
-  </a>
-  <a href="#" class="right active item">HOME</a></li>
-  <a href="#" class="item">TRANSACTIONS</a>
-  <a href="#" class="item">SHOPS</a>
-  <a href="#" class="item">
-    <i class="large sign out icon"></i>
-  </a>
+<div class="ui fixed inverted menu">
+   <div class="ui container">     
+		<a href="/" class="header item">       
+			<i class="treatment icon"></i>       
+			MedAccessPH     
+		</a>
+  <a href="#" class="right active item"><i class="home icon"></i></a>
+  <div class="ui simple dropdown item">       
+  	<i class="settings icon"></i>
+   	<i class="dropdown icon"></i>       
+   	<div class="menu">         
+   		<a class="item" href="">View Hospitals</a>         
+   		<a class="item" href="">Edit Details</a>    
+   	</div>     
+  </div>
+  <a href="#" class="item"><i class="sign out icon"></i></a>
 </div>
 </div>
-
-<!-- SEND REQUESTS -->
-<!-- <div class="ui center aligned equal height grid">
-	<div class="ui two column grid">
-		<div class="four wide left aligned column">
-			<h1 class="ui header">Send Request</h1>
-			<div class="ui segment">
-			hello
-			</div>
-		</div>
-		<div class="nine wide left aligned column">
-			<div class="ui segment">
-			hi
-			</div>
-			<div class="ui segment">
-			hi
-			</div>
-		</div>
-	</div>
-</div> -->
 
 <div class="ui center aligned middle aligned grid">
 	<div class="ui two column grid">
 		<div class="five wide column">
 			<div class="ui form left aligned segment">
-				<h2 class="ui header">Send Request</h1>
+				<h2 class="ui header">Send Request</h2>
+				<a href="#" class="ui button"><i class="search icon"></i>
+				<div class="ui modal">
+				  <i class="close icon"></i>
+				  <div class="content">
+				    Yes
+				  </div>
+				</div>
+				</a>
 				<div class="ui content">
-					<div class="ui fluid selection dropdown">
-						<div class="text">Case</div>
-						<i class="dropdown icon"></i>
-						<div class="menu">
-							<div class="item">New</div>
-							<div class="item">New</div>
-							<div class="item">New</div>
-							<div class="item">New</div>
-							<div class="item">New</div>
+					<form class="ui form">
+						<div class="field">
+							<div class="ui selection dropdown">
+								<input name="case">
+  								<i class="dropdown icon"></i>
+  								<div class="default text">Case</div>
+								<div class="menu">
+									<div class="item" data-value="jenny">New</div>
+									<div class="item" data-value="jenny">New</div>
+									<div class="item" data-value="jenny">New</div>
+									<div class="item" data-value="jenny">New</div>
+									<div class="item" data-value="jenny">New</div>
+								</div>
+							</div>
 						</div>
-					</div>
+						<div class="ui green submit button">Send</div>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -98,12 +83,20 @@
 	</div>
 </div>
 
+
+
+
 </body>
 
   <script>
 $('.ui.dropdown')
   .dropdown()
 ;
+$(document).ready(function() {
+  $('.ui.button').click(function() {
+    $('.ui.modal').modal('show');
+  });
+});
   </script>
 
 </html>
