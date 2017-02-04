@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -75,15 +76,20 @@ WSGI_APPLICATION = 'healthhacks.wsgi.application'
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'healthhacks',
-        'USER': 'healthhacks',
-        'PASSWORD': 'healthhacks',
-        'HOST': 'localhost',
-        'PORT': '5433',
-    }
+    'default' : dj_database_url.config(default='postgres://cypdydnsuvcdmb:7280058e7705c3215ee7a8cdfe235ee9992b3b2353bc6125615075fa244e176f@ec2-54-235-247-224.compute-1.amazonaws.com:5432/d92cqv7jas419q')
+
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'healthhacks',
+#         'USER': 'healthhacks',
+#         'PASSWORD': 'healthhacks',
+#         'HOST': 'localhost',
+#         'PORT': '5433',
+#     }
+# }
 
 
 # Password validation
