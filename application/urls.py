@@ -3,7 +3,7 @@ from application import views
 from views import *
 
 urlpatterns = [
-	url(r'^$', Hey, name = 'Hey'),
-
+	url(r'^$', Login, name = 'Login'),
+	url(r'^home/', Landing, name = 'Landing'),
 
 ]

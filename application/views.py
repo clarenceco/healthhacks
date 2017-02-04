@@ -7,6 +7,10 @@ from django.core.urlresolvers import reverse
 from django.conf import settings
 
 
-def Hey(request):
+def Login(request):
 	context = {}
-	return render(request, 'hey.html', context)
+	return render(request, 'login.html', context)
+
+def Landing(request):
+	context = {}
+	return render(request, 'landing.html', context)
