@@ -1,1 +1,1 @@
-web: gunicorn goodhouse.wsgi --log-file -
+web: gunicorn healthhacks.wsgi --log-file -
