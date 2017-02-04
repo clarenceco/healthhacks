@@ -15,7 +15,13 @@
 </head>
   <style type="text/css">
     body {
+    }
 
+    .ui.grid {
+    	margin-top: 70px;
+    	max-width: 700px;
+    	margin-right: auto;
+    	margin-left: auto;
     }
 
   </style>
@@ -41,46 +47,37 @@
 </div>
 </div>
 
-<div class="ui center aligned middle aligned grid">
-	<div class="ui two column grid">
-		<div class="five wide column">
-			<div class="ui form left aligned segment">
-				<h2 class="ui header">Send Request</h2>
-				<a href="#" class="ui button"><i class="search icon"></i>
-				<div class="ui modal">
-				  <i class="close icon"></i>
-				  <div class="content">
-				    Yes
-				  </div>
-				</div>
-				</a>
-				<div class="ui content">
-					<form class="ui form">
-						<div class="field">
-							<div class="ui selection dropdown">
-								<input name="case">
-  								<i class="dropdown icon"></i>
-  								<div class="default text">Case</div>
-								<div class="menu">
-									<div class="item" data-value="jenny">New</div>
-									<div class="item" data-value="jenny">New</div>
-									<div class="item" data-value="jenny">New</div>
-									<div class="item" data-value="jenny">New</div>
-									<div class="item" data-value="jenny">New</div>
-								</div>
-							</div>
-						</div>
-						<div class="ui green submit button">Send</div>
-					</form>
-				</div>
-			</div>
-		</div>
-		<div class="five wide left column">
-			<div class="ui form left aligned segment">
-				<h2 class="ui header">Update Availability</h1>
-			</div>
-		</div>
-	</div>
+<div class="ui center aligned grid">
+	<h2 class="ui header"><i class="hospital icon"></i>All Hospitals</h2>
+	<table class="ui striped table">
+  <thead>
+    <tr>
+      <th>Hospital Name</th>
+      <th>Availability</th>
+      <th>Ambulance</th>
+      <th>Location</th>
+      <th>Contact No.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>John Lilki</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Sa lilki</td>
+      <td>0218421</td>
+    </tr>
+    <tr>
+      <td>Jamie Harington</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Sa haring</td>
+      <td>40112312</td>
+    </tr>
+  </tbody>
+</table>
+
+
 </div>
 
 
