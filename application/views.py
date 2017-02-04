@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.conf import settings
 from .models import Hospital, Account
+import search
 
 
 def Login(request):
@@ -37,3 +38,62 @@ def View(request):
 def Landing2(request):
 	context = {}
 	return render(request, 'landing2.html', context)
+
+def send_case(request):
+	if request.is_ajax():
+		case = request.POST.get('case')
+		foundH = search.search(case)
+		return HttpResponse(foundH)
+
+def send_advanced(request):
+	if request.is_ajax():
+		request = request.POST.get('request')
+		foundH = search.search_advanced(case)
+		return HttpResponse(foundH)
+
+def send_iter(request):
+	if request.is_ajax():
+		request = request.POST.get('request')
+		rejected = request.POST.get('rejected')
+		foundH = search.search_iter(request, rejected)
+		return HttpResponse(foundH)
+
+def update_availability(request):
+	if request.is_ajax():
+		accepting  = request.POST.get('accepting')
+		ambulance = request.POST.get('ambulance')
+		hospital = request.POST.get('hospital')
+		hospitals = Hospital.objects.all()
+		for Hospital in hospitals:
+			if Hospital.hospital_name == hospitals:
+				Hospital.availability = accepting
+				Hospital.ambulance = ambulance
+				Hospital.save()
+		return HttpResponse()
+
+def update_availability_advanced(request):
+	if request.is_ajax():
+		accepting  = request.POST.get('accepting')
+		ambulance = request.POST.get('ambulance')
+		cases = request.POST.get('cases')
+		hospital = request.POST.get('hospital')
+		hospitals = Hospital.objects.all()
+		for Hospital in hospitals:
+			if Hospital.hospital_name == hospitals:
+				Hospital.availability = accepting
+				Hospital.ambulance = ambulance
+				Hospital.cases = cases
+				Hospital.save()
+		return HttpResponse()
+
+
+# def add_to_queue(request):
+# 	if request.is_ajax():
+# 		origin  = request.POST.get('origin')
+# 		destination = request.POST.get('destination')
+# 		ambulance = request.POST.get('ambulance')
+# 		hospitals = Hospital.objects.all()
+# 		for Hospital in hospitals:
+# 			if Hospital.hospital_name == origin:
+# 				add_queue(origin,destination, ambulance, eta)
+# 		return HttpResponse()
