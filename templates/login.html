@@ -100,7 +100,7 @@
             <input type="password" name="password" placeholder="Password">
           </div>
         </div>
-        <div class="ui fluid large teal submit button">Login</div>
+        <div class="ui fluid large teal submit button" id = "login">Login</div>
       </div>
 
       <div class="ui error message"></div>
@@ -111,5 +111,19 @@
 </div>
 
 </body>
+<script>
+$("#login").click(function() {
+  function send(){
+      return $.ajax({
+          url: "home/"
+          data: { 'email': email, 'password': password}
 
+      });
+  }
+
+
+});
+
+</script>
 </html>
+
