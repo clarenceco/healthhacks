@@ -10,9 +10,11 @@ class Hospital(models.Model):
 	location = models.TextField()
 	city = models.TextField()
 	contactno = models.TextField()
+	cases = models.TextField()
+	longitude = models.IntegerField()
+	latitude = models.IntegerField()
 	def __str__(self):
 		return self.hospital_name
-
 
 class Account(models.Model):
 	email = models.CharField(max_length = 50)

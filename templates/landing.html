@@ -1,3 +1,6 @@
+{% load staticfiles %}
+{% load static %}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,22 +18,35 @@
 </head>
   <style type="text/css">
     body {
-
+    	background-image: url({% static '1.png' %});
+    	max-height: 100px;
+    }
+    .dark-blue {
+    	color: #19647e;
+	}
+    .ui.center.aligned.middle.aligned.grid{
+    	margin-top: 100px;
+    }
+    .dark-red {
+    	color: #892a2c;
+    }
+    .custom {
+    	color: #957186;
     }
 
-    .ui.grid {
-    	margin-top: 140px;
-    }
+.ui.toggle.checkbox {
+    min-height: 3.5rem;
+}
 
   </style>
 
 <body>
 <!-- NAV BAR -->
-<div class="ui fixed inverted menu">
+<div class="ui fixed inverted menu" style="background-color: #335c67">
    <div class="ui container">     
 		<a href="/" class="header item">       
 			<i class="treatment icon"></i>       
-			MedAccessPH     
+			MedAccessPH   {{name}}  
 		</a>
   <a href="#" class="right active item"><i class="home icon"></i></a>
   <div class="ui simple dropdown item">       
@@ -45,18 +61,18 @@
 </div>
 </div>
 
-<div class="ui center aligned middle aligned grid">
+<div class="ui center aligned middle aligned equal height grid">
 	<div class="ui two column grid">
 		<div class="five wide column">
-			<div class="ui form left aligned segment">
-				<div class="ui icon header">
-				<i class="settings icon"></i>
-				<div class="content">
-				  Send Request
-				  </div>
-				  <div class="sub header">Sub-header</div>
+			<div class="ui icon header">
+				<i class="send outline icon dark-red"></i>
+				<div class="content" style="font-size:25px; line-height:30px">
+					Send a Request
+					<div class="sub header">for an ambulance</div>
 				</div>
-				</div>	
+			</div>
+			<div class="ui form left aligned segment">
+				<div class="ui content">
 					<form class="ui form">
 						<div class="field">
 							<div class="ui selection dropdown">
@@ -72,15 +88,38 @@
 								</div>
 							</div>
 						</div>
-						<div id="sendbutton" class="ui green submit button">Send</div>			
+					<div class="ui two buttons">
+					<div id="editsettingsbutton" class="ui button"><i class="edit icon"></i>More...</div>
+					<div id="sendbutton" class="ui blue submit button">Search</div>		
+					</div>
+					
 					</form>
-					<button id="editsettingsbutton" class="ui basic button"><i class="edit icon"></i></button>
 				</div>
 			</div>
 		</div>
 		<div class="five wide left column">
-			<div class="ui form left aligned segment">
-				<h2 class="ui header">Update Availability</h1>
+			<div class="ui icon header">
+			<i class="wait icon dark-red"></i>
+			<div class="content" style="font-size:25px; line-height:30px">
+				Update Availability
+				<div class="sub header">of resources</div>
+			</div>
+			</div>
+			<div class="ui center aligned segment">
+			   <div class="ui two column grid">
+                    <div class="column">
+                    <h3 class="ui header">Accepting</h3>
+                    	<div id="yo" class="ui huge toggle checkbox">
+                    <input type="checkbox" name="public" id="toggle-1"><label class="dn" for="toggle-1" data-content="ON"> </label>
+                    </div>
+                    </div>
+                    <div class="column">
+                        <h3 class="ui header">Ambulance</h3>
+                        <div id="yo" class="ui toggle checkbox">
+                   <input type="checkbox" name="public" id="toggle-2"><label class="dn" for="toggle-2" data-content="ON"> </label>
+                   </div>
+                   </div>
+                </div>
 			</div>
 		</div>
 	</div>
@@ -90,18 +129,44 @@
 <div id="editsettings" class="ui small modal">
 	<i class="close icon"></i>
   <div class="header">
-    Advanced Send Request
+    <i class="send icon dark-red"></i><font color="#892a2c" size="5px"> Advanced Send Request</font>
   </div>
   <div class="content">
-  	<form id="settings" class="ui form" method="POST">
-		  <div class=" field">
-		    <label>Philhealth Accredited</label>
-		    <input name="address" value="Shopping Center, UPD" placeholder="Address" type="text">
-		  </div>
-		  <div class=" field">
-		  	<label>Level</label>
-		    <input name="contact" value="09123456789" placeholder="0000-000-0000" type="text">
-		  </div>
+  	<form id="settings" class="ui form" method="POST"> {% csrf_token %}
+		<div class="ui three fields">
+		<div class="field">
+			<div class="ui selection dropdown">
+				<input name="level">
+					<i class="dropdown icon"></i>
+					<div class="default text">Level</div>
+				<div class="menu">
+					<div class="item" data-value="l1">Level 1</div>
+					<div class="item" data-value="l2">Level 2</div>
+					<div class="item" data-value="l3">Level 3</div>
+				</div>
+			</div>
+		</div>
+		<div class="field">
+			<div class="ui toggle checkbox">
+        	<input name="philhealth" tabindex="0" class="hidden" type="checkbox">
+        	<label style="margin-top:7px">Philhealth Accredited</label>
+      		</div>
+		</div>
+		<div class="field">
+			<div class="ui selection dropdown">
+				<input name="level">
+					<i class="dropdown icon"></i>
+					<div class="default text">Case</div>
+				<div class="menu">
+					<div class="item" data-value="l1">Case 1</div>
+					<div class="item" data-value="l2">Case 2</div>
+					<div class="item" data-value="l3">Case 3</div>
+				</div>
+			</div>
+		</div>
+		</div>
+
+		  <div class="ui two fields">
 		  <div class=" field">
 		    <label>Location</label>
 		    <div class="ui selection dropdown">
@@ -118,26 +183,13 @@
 				</div>
 		  </div>
 		  <div class="field">
-		    <label>Case</label>
-		    <div class="ui selection dropdown">
-					<input name="case">
-						<i class="dropdown icon"></i>
-						<div class="default text">Case</div>
-					<div class="menu">
-						<div class="item" data-value="jenny">New</div>
-						<div class="item" data-value="jenny">New</div>
-						<div class="item" data-value="jenny">New</div>
-						<div class="item" data-value="jenny">New</div>
-						<div class="item" data-value="jenny">New</div>
-					</div>
-				</div>
-		  <div class="field">
-		    <label>Needed Facilities</label>
-		    <input name="confirmpassword" placeholder="Confirm New Password" type="text">
+		    <label>Needed Equipment</label>
+		    <input name="neededequip" placeholder="Needed Equipment" type="text">
+		  </div>
 		  </div>
 		  <div class="field">
-		    <label>Remarks/ Prognosis</label>
-		    <input name="confirmpassword" placeholder="Confirm New Password" type="text">
+		    <label>Remarks / Prognosis</label>
+		    <textarea rows="2"></textarea>
 		  </div>
 	</div>
   <div class="actions">
@@ -151,28 +203,56 @@
 
 <!-- Search hospital (send lang) -->
 <div id="searchhospital" class="ui small modal">
-	<div class="ui text loader">Searching</div>
-	<!-- cancel button -->
+	<div class="ui large text loader"><h3>Searching for a hospital...</h3>Press the ESC key to cancel</div>
 </div>
 
 <!-- Search hospital (advance send) -->
 <div id="searchhospital2" class="ui small modal">
-	<!-- <div class="ui active dimmer"></div> -->
-	<div class="ui text loader">Searching</div>
-	<!-- cancel button -->
+	<div class="ui large text loader"><h3>Searching for a hospital...</h3>Press the ESC key to cancel</div>
 </div>
 
 <!-- Not found hospital: key 1 -->
 <div id="notfoundhospital" class="ui small modal">
-	Hospital not found
-	<!-- ok and try again button -->
+	<i class="close icon"></i>
+	<div class="ui icon header">
+		<i class="remove circle icon dark-red"></i>
+		<div class="content" style="font-size:25px; line-height:30px">
+		<div class="dark-red">No Hospitals Found</div>
+		<div class="sub header">Do you want to try again?</div>
+		</div>
+	</div>
+	<div class="actions" style="text-align:center;">
+	<div id="ok" class="ui green button">Ok</div>
+	<div id="cancel" class="ui red button">Cancel</div>
+	</div>
 </div>
 
 <!-- Found hospital no send info: key 2 -->
 <div id="foundhospital" class="ui small modal">
-	Hospital found
+	<i class="close icon"></i>
+	<div class="ui icon header">
+		<i class="hospital circle icon dark-red"></i>
+		<div class="content" style="font-size:25px; line-height:30px">
+		<div class="dark-red">Found a hospital!</div>
+		<div class="sub header">Here are the details</div>
+	</div>
+	<div class="ui center aligned segment">
+		<div class="ui two column grid">
+			<div class="column">
+				<b>Name</b>
+				<div class="ui sub header">St. Peter's Hospital></div>
+			</div>
+			<div class="column">
+				<b>Name</b>
+				<div class="ui sub header">St. Peter's Hospital></div>
+			</div>
+		</div>
+	</div>
+	<div class="actions" style="text-align:center;">
 	<div id="okfound" class="ui green button">Ok</div>
-	<!-- cancel button -->
+	<div id="okfound" class="ui green button">Send</div>
+	<div id="cancel" class="ui red button">Cancel</div>
+	</div>
 </div>
 
 <!-- Found hospital with send info: key 3 -->
@@ -199,18 +279,70 @@
 
 <!-- Transfering -->
 <div id="transferring" class="ui small modal">
-	<div id="transferringsend" class="ui green button">Send</div>
+	<i class="close icon"></i>
+	<div class="header">
+    Transfer Request
+  	</div>
+  	<div class="content">
+  		<form id="settings" class="ui form" method="POST">
+		  <div class="inline field"> {% csrf_token %}
+		    <label>From:</label>
+		    <input name="address" placeholder="Hospital Name" type="text">
+		  </div>
+		  <div class="inline field">
+		    <label>Case</label>
+		    <input name="address" value="Cardiovascular" readonly="" type="text">
+		  </div>
+		  
+		   <div class="ui segment">
+    <div class="inline field">
+      <div class="ui toggle checkbox">
+        <input name="gift" tabindex="0" class="hidden" type="checkbox">
+        <label>Need Additional Information</label>
+      </div>
+    </div>
+  </div>
+		  
+		<div class="actions">
+  	<!-- may aayusin pa sa cancel button: magrreset dapat yung form kapag cinancel -->
+		    <div class="ui red cancel button">Cancel</div> 
+		    <div id="transferringsend" class="ui green submit button">Send</div>
+		</div>
+  	</div>
+		</form>	
 	<!-- cancel button -->
 </div>
 <!-- Additional req -->
 <div id="additionalreq" class="ui small modal">
-	<div id="additionalreqaccept" class="ui green button">Accept</div>
-	<div id="additionalreqreject" class="ui green button">Reject</div>
-	<!-- cancel button -->
+	<i class="close icon"></i>
+	<div class="header">
+    Additional Request
+  	</div>
+  	<div class="content">
+  		<form id="settings" class="ui form" method="POST">
+		  <div class="inline field"> {% csrf_token %}
+		    <label>Case</label>
+		    <input name="address" value="Cardiovascular" readonly="" type="text">
+		  </div>
+		  <div class="inline field">
+		    <label>Needed Equipment</label>
+		    <input name="address" value="Defibrilator" readonly="" type="text">
+		  </div>
+		  <div class="inline field">
+		    <label>Additional Information</label>
+		    <input name="address" value="Prognosis" readonly="" type="text">
+		  </div>
+		  
+    </div>
+		  
+		<div class="actions">
+  	<!-- may aayusin pa sa cancel button: magrreset dapat yung form kapag cinancel -->
+		    <div class="ui red cancel button">Reject</div> 
+		    <div id="transferringsend" class="ui green submit button">Accept</div>
+		</div>
+  	</div>
+		</form>	
 </div>
-
-
-
 
 </body>
 
@@ -228,6 +360,11 @@ $("#editsettingsbutton").click(function() { // advance send button
 
 $("#sendbutton").click(function() { // send button lang
 	$('#searchhospital').modal('show');		
+});
+
+$("#ok").click(function() { // send button lang
+	$('#searchhospital').modal('show');	
+	$('#notfoundhospital').modal('hide');	
 });
 
 $(document).keydown(function(n) { // hospital not found #1
@@ -282,6 +419,20 @@ $("#okfound2").click(function() { // send button lang
 	$('#searchambulance').modal('show');		
 });
 
+$('#yo')
+ .checkbox()
+ .first().checkbox({
+   onChecked: function() {        $("label[for='"+$(this).attr("id")+"']").removeClass('dn').addClass('up').attr('data-content','ON');
+   },
+   onUnchecked: function() {
+     $("label[for='"+$(this).attr("id")+"']").removeClass('up').addClass('dn').attr('data-content','OFF');
+   }
+})
+;
+
+$('.ui.toggle.checkbox')
+ .checkbox()
+;
 </script>
 
 </html>
