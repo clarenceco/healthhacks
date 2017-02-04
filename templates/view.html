@@ -56,24 +56,21 @@
       <th>Availability</th>
       <th>Ambulance</th>
       <th>Location</th>
+      <th>City</th>
       <th>Contact No.</th>
     </tr>
   </thead>
   <tbody>
+    {% for hospital in hospitals %}
     <tr>
-      <td>John Lilki</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>Sa lilki</td>
-      <td>0218421</td>
+      <td>{{hospital.hospital_name}}</td>
+      <td>{{hospital.availability}}</td>
+      <td>{{hospital.ambulance}}</td>
+      <td>{{hospital.location}}</td>
+      <td>{{hospital.city}}</td>
+      <td>{{hospital.contactno}}</td>
     </tr>
-    <tr>
-      <td>Jamie Harington</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>Sa haring</td>
-      <td>40112312</td>
-    </tr>
+    {% endfor %}
   </tbody>
 </table>
 

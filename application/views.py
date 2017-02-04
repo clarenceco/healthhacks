@@ -5,6 +5,7 @@ from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.conf import settings
+from .models import Hospital
 
 
 def Login(request):
@@ -16,5 +17,6 @@ def Landing(request):
 	return render(request, 'landing.html', context)
 
 def View(request):
-	context = {}
+	hospitals = Hospital.objects.all()
+	context = {'hospitals':hospitals}
 	return render(request, 'view.html', context)
