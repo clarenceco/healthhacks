@@ -18,6 +18,10 @@
 
     }
 
+    .ui.grid {
+    	margin-top: 140px;
+    }
+
   </style>
 
 <body>
@@ -33,7 +37,7 @@
   	<i class="settings icon"></i>
    	<i class="dropdown icon"></i>       
    	<div class="menu">         
-   		<a class="item" href="/view">View Hospitals</a>         
+   		<a class="item" href="">View Hospitals</a>         
    		<a class="item" href="">Edit Details</a>    
    	</div>     
   </div>
@@ -45,16 +49,9 @@
 	<div class="ui two column grid">
 		<div class="five wide column">
 			<div class="ui form left aligned segment">
-				<h2 class="ui header">Send Request</h2>
-				<a href="#" class="ui button"><i class="search icon"></i>
-				<div class="ui modal">
-				  <i class="close icon"></i>
-				  <div class="content">
-				    Yes
-				  </div>
-				</div>
-				</a>
+				<h2 class="ui header">Send Request</h1>
 				<div class="ui content">
+					
 					<form class="ui form">
 						<div class="field">
 							<div class="ui selection dropdown">
@@ -70,8 +67,9 @@
 								</div>
 							</div>
 						</div>
-						<div class="ui green submit button">Send</div>
+						<div id="sendbutton" class="ui green submit button">Send</div>			
 					</form>
+					<button id="editsettingsbutton" class="ui basic button"><i class="edit icon"></i></button>
 				</div>
 			</div>
 		</div>
@@ -83,6 +81,115 @@
 	</div>
 </div>
 
+<!-- Advance send -->
+<div id="editsettings" class="ui small modal">
+	<i class="close icon"></i>
+  <div class="header">
+    Advanced Send Request
+  </div>
+  <div class="content">
+  	<form id="settings" class="ui form" method="POST">
+		  <div class=" field">
+		    <label>Philhealth Accredited</label>
+		    <input name="address" value="Shopping Center, UPD" placeholder="Address" type="text">
+		  </div>
+		  <div class=" field">
+		  	<label>Level</label>
+		    <input name="contact" value="09123456789" placeholder="0000-000-0000" type="text">
+		  </div>
+		  <div class=" field">
+		    <label>Location</label>
+		    <div class="ui selection dropdown">
+					<input name="location">
+						<i class="dropdown icon"></i>
+						<div class="default text">Location</div>
+					<div class="menu">
+						<div class="item" data-value="jenny">New</div>
+						<div class="item" data-value="jenny">New</div>
+						<div class="item" data-value="jenny">New</div>
+						<div class="item" data-value="jenny">New</div>
+						<div class="item" data-value="jenny">New</div>
+					</div>
+				</div>
+		  </div>
+		  <div class="field">
+		    <label>Case</label>
+		    <div class="ui selection dropdown">
+					<input name="case">
+						<i class="dropdown icon"></i>
+						<div class="default text">Case</div>
+					<div class="menu">
+						<div class="item" data-value="jenny">New</div>
+						<div class="item" data-value="jenny">New</div>
+						<div class="item" data-value="jenny">New</div>
+						<div class="item" data-value="jenny">New</div>
+						<div class="item" data-value="jenny">New</div>
+					</div>
+				</div>
+		  <div class="field">
+		    <label>Needed Facilities</label>
+		    <input name="confirmpassword" placeholder="Confirm New Password" type="text">
+		  </div>
+		  <div class="field">
+		    <label>Remarks/ Prognosis</label>
+		    <input name="confirmpassword" placeholder="Confirm New Password" type="text">
+		  </div>
+	</div>
+  <div class="actions">
+  	<!-- may aayusin pa sa cancel button: magrreset dapat yung form kapag cinancel -->
+    <div class="ui red cancel button">Cancel</div> 
+    <div id="sendbutton2" class="ui green submit button">Send</div>
+</div>
+</form>
+</div>
+</div>
+
+<!-- Search hospital (send lang) -->
+<div id="searchhospital" class="ui small modal">
+	<div class="ui text loader">Searching</div>
+	<!-- cancel button -->
+</div>
+
+<!-- Search hospital (advance send) -->
+<div id="searchhospital2" class="ui small modal">
+	<!-- <div class="ui active dimmer"></div> -->
+	<div class="ui text loader">Searching</div>
+	<!-- cancel button -->
+</div>
+
+<!-- Not found hospital: key 1 -->
+<div id="notfoundhospital" class="ui small modal">
+	Hospital not found
+	<!-- ok and try again button -->
+</div>
+
+<!-- Found hospital no send info: key 2 -->
+<div id="foundhospital" class="ui small modal">
+	Hospital found
+	<div id="okfound" class="ui green button">Ok</div>
+	<!-- cancel button -->
+</div>
+
+<!-- Found hospital with send info: key 3 -->
+<div id="foundhospital2" class="ui small modal">
+	Hospital found
+	<div id="okfound2" class="ui gray button">Ok</div>
+	<div id="sendinfo" class="ui green button">Send Info</div>
+	<!-- cancel button -->
+</div>
+
+<!-- Search ambulance -->
+<div id="searchambulance" class="ui small modal">
+	<div class="ui text loader">Searching for ambulance</div>
+	<!-- cancel button -->
+</div>
+
+<!-- Send info -->
+<div id="sendinfo" class="ui small modal">
+	Ajakfafkasfka
+	<div id="okfound" class="ui green button">Ok</div>
+	<!-- cancel button -->
+</div>
 
 
 
@@ -92,11 +199,50 @@
 $('.ui.dropdown')
   .dropdown()
 ;
-$(document).ready(function() {
-  $('.ui.button').click(function() {
-    $('.ui.modal').modal('show');
-  });
+$("#editsettingsbutton").click(function() { // advance send button
+	$('#editsettings').modal('show');		
+	$("#sendbutton2").click(function() {
+		$('#editsettings').modal('hide');
+		$('#searchhospital2').modal('show');		
+	});
 });
-  </script>
+
+$("#sendbutton").click(function() { // send button lang
+	$('#searchhospital').modal('show');		
+});
+
+$(document).keydown(function(n) { // hospital not found #1
+   if (n.keyCode == 49) {
+		$('#searchhospital2').modal('hide');
+		$('#searchhospital').modal('hide');
+		$('#notfoundhospital').modal('show');
+   }
+});
+
+$(document).keydown(function(n) { // hospital found #2
+   if (n.keyCode == 50) {
+		$('#searchhospital2').modal('hide');
+		$('#searchhospital').modal('hide');
+		$('#foundhospital').modal('show');
+   }
+});
+
+$(document).keydown(function(n) { // hospital found with send info #3
+   if (n.keyCode == 51) {
+		$('#searchhospital2').modal('hide');
+		$('#searchhospital').modal('hide');
+		$('#foundhospital2').modal('show');
+   }
+});
+
+$("#okfound").click(function() { // send button lang
+	$('#searchambulance').modal('show');		
+});
+
+$("#okfound2").click(function() { // send button lang
+	$('#searchambulance').modal('show');		
+});
+
+</script>
 
 </html>
