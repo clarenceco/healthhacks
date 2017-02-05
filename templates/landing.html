@@ -1,138 +1,171 @@
-{% load staticfiles %}
-{% load static %}
+	{% load staticfiles %}
+	{% load static %}
 
-<!DOCTYPE html>
-<html>
-<head>
-  <!-- Standard Meta -->
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<!DOCTYPE html>
+	<html>
+	<head>
+	  <!-- Standard Meta -->
+	  <meta charset="utf-8" />
+	  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <!-- Site Properties -->
-  <title>MedAccessPH</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.js"></script>
+	  <!-- Site Properties -->
+	  <title>ProxiMed</title>
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.css">
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.js"></script>
 
-</head>
-  <style type="text/css">
-    body {
-    	background-image: url({% static '1.png' %});
-    	max-height: 100px;
-    }
-    .dark-blue {
-    	color: #19647e;
+	</head>
+	  <style type="text/css">
+	  	html *
+		{
+   			font-family: Lato;
+		}
+	    body {
+
+	    	background-image: url({% static '122.jpg' %});
+	    	max-height: 100px;
+	    }
+	    .dark-blue {
+	    	color: #19647e;
+		}
+	    #title{
+	    	margin-top: 60px;
+	    }
+	    .dark-red {
+	    	color: #892a2c;
+	    }
+	    .custom {
+	    	color: #957186;
+	    }
+
+	.ui.toggle.checkbox {
+	    min-height: 1.9rem;
 	}
-    .ui.center.aligned.middle.aligned.grid{
-    	margin-top: 100px;
-    }
-    .dark-red {
-    	color: #892a2c;
-    }
-    .custom {
-    	color: #957186;
-    }
 
-.ui.toggle.checkbox {
-    min-height: 3.5rem;
-}
+		.ui.form.left.aligned.trans.segment {
+			background: rgba(255,255,255,0.4);
+		}
+		.ui.center.aligned.trans.segment {
+			background: rgba(255,255,255,0.4);
+		}
 
-  </style>
+	.ui.divider {
+		margin-top: 0rem;
+	}
 
-<body>
-<!-- NAV BAR -->
-<div class="ui fixed inverted menu" style="background-color: #335c67">
-   <div class="ui container">     
-		<a href="/" class="header item">       
-			<i class="treatment icon"></i>       
-			MedAccessPH   {{name}}  
-		</a>
-  <a href="#" class="right active item"><i class="home icon"></i></a>
-  <div class="ui simple dropdown item">       
-  	<i class="settings icon"></i>
-   	<i class="dropdown icon"></i>       
-   	<div class="menu">         
-   		<a class="item" href="/view">View Hospitals</a>         
-   		<a class="item" href="">Edit Details</a>    
-   	</div>     
+	.ui.button.toggle.active, .ui.button.toggle.active:hover {
+		background-color: #2185D0 !important;
+	}
+
+	  </style>
+
+	<body>
+	<!-- NAV BAR -->
+<div class="ui huge fixed menu">
+     <div class="ui container">     
+      <a href="/home/" class="header item">      
+        <img src={% static 'ambulance.png' %}>ProxiMed PH      
+      </a>
+    <a href="/back/" class="right active item"><i class="home icon"></i></a>
+    <div class="ui simple dropdown item">       
+      <i class="settings icon"></i>
+      <i class="dropdown icon"></i>       
+      <div class="menu">         
+        <a class="item" href="/view">View Hospitals</a>         
+        <a class="item" href="">Edit Details</a> 
+        <a class="item" href="/transfer">Pending Transfers</a>        
+      </div>     
+    </div>
+    <a href="/" class="item"><i class="sign out icon"></i></a>
   </div>
-  <a href="#" class="item"><i class="sign out icon"></i></a>
-</div>
 </div>
 
-<div class="ui center aligned middle aligned equal height grid">
-	<div class="ui two column grid">
-		<div class="five wide column">
-			<div class="ui icon header">
-				<i class="send outline icon dark-red"></i>
-				<div class="content" style="font-size:25px; line-height:30px">
-					Send a Request
-					<div class="sub header">for an ambulance</div>
+	<div id="title" class="ui center aligned grid">
+		<div class="content" style="text-align:center;">
+		<h1 class="ui header" style="font-size: 70px; letter-spacing:6px;">
+		<div class="content">
+		<img src={% static 'ambulance2.png' %} height="85">ProxiMed PH</div>
+		<div class="ui divider"></div>
+		<div class="sub header" style="font-size: 20px; letter-spacing:0px;">St. Luke's Hospital</div>
+		</h1>
+		</div>
+	</div>
+	<BR><br>
+	<div class="ui center aligned middle aligned equal height grid">
+		<div class="ui two column grid">
+			<div class="five wide column">
+				<div class="ui form center aligned segment trans">
+				<div class="ui icon header">
+					<i class="send outline icon dark-blue"></i>
+					<div class="content" style="font-size:25px; line-height:30px">
+						Send a Request
+						<div class="sub header">for an ambulance</div>
+					</div>
 				</div>
-			</div>
-			<div class="ui form left aligned segment">
-				<div class="ui content">
-					<form class="ui form">
-						<div class="field">
-							<div class="ui selection dropdown">
-								<input name="case">
-  								<i class="dropdown icon"></i>
-  								<div class="default text">Case</div>
-								<div class="menu">
-									<div class="item" data-value="jenny">New</div>
-									<div class="item" data-value="jenny">New</div>
-									<div class="item" data-value="jenny">New</div>
-									<div class="item" data-value="jenny">New</div>
-									<div class="item" data-value="jenny">New</div>
+					<div class="ui content">
+						<form class="ui form">
+							<div class="field">
+								<div class="ui selection dropdown">
+									<input name="case">
+	  								<i class="dropdown icon"></i>
+	  								<div class="default text">Case</div>
+									<div class="menu">
+										<div class="item" data-value="jenny">Neurology</div>
+										<div class="item" data-value="jenny">Cardiology</div>
+										<div class="item" data-value="jenny">Oncology</div>
+										<div class="item" data-value="jenny">Pediatrics</div>
+										<div class="item" data-value="jenny">Psychiatry</div>
+									</div>
 								</div>
 							</div>
+						<div class="ui two buttons">
+						<div id="editsettingsbutton" class="ui button"><i class="edit icon"></i>More...</div>
+						<div id="sendbutton" class="ui blue submit button">Search</div>		
 						</div>
-					<div class="ui two buttons">
-					<div id="editsettingsbutton" class="ui button"><i class="edit icon"></i>More...</div>
-					<div id="sendbutton" class="ui blue submit button">Search</div>		
+						
+						</form>
 					</div>
-					
-					</form>
 				</div>
 			</div>
-		</div>
-		<div class="five wide left column">
-			<div class="ui icon header">
-			<i class="wait icon dark-red"></i>
-			<div class="content" style="font-size:25px; line-height:30px">
-				Update Availability
-				<div class="sub header">of resources</div>
-			</div>
-			</div>
-			<div class="ui center aligned segment">
-			   <div class="ui two column grid">
-                    <div class="column">
-                    <h3 class="ui header">Accepting</h3>
-                    	<div id="yo" class="ui huge toggle checkbox">
-                    <input type="checkbox" name="public" id="toggle-1"><label class="dn" for="toggle-1" data-content="ON"> </label>
-                    </div>
-                    </div>
-                    <div class="column">
-                        <h3 class="ui header">Ambulance</h3>
-                        <div id="yo" class="ui toggle checkbox">
-                   <input type="checkbox" name="public" id="toggle-2"><label class="dn" for="toggle-2" data-content="ON"> </label>
-                   </div>
-                   </div>
-                </div>
+			<div class="five wide left column">
+				<div class="ui center aligned segment trans">
+				<div class="ui icon header" style="margin-bottom:19px;">
+				<i class="wait icon dark-blue" ></i>
+				<div class="content" style="font-size:25px; line-height:30px">
+					Update Availability
+					<div class="sub header">of resources</div>
+				</div>
+				</div>
+					<p>
+				   <div class="ui two column grid">
+	                    <div class="column">
+	                     <h3 class="ui header" style="margin-bottom: 5px"><i class="hotel icon dark-blue" style="margin-right: 0px"></i> Availability</h3>
+	                   <!--  	<div id="yo" class="ui toggle button" style="margin-left: 10px">
+	                    <input type="checkbox" name="public" id="toggle-1"><label class="dn" for="toggle-1" data-content="ON"> </label> -->
+	                    <div class="ui toggle button">No</div>
+	                    </div>
+	                    <div class="column">
+	                        <h3 class="ui header" style="margin-bottom: 5px"><i class="emergency icon dark-blue" style="margin-right: 0px"></i> Ambulance</h3>
+	                 <!--    <div id="yo" class="ui toggle button" style="margin-left: 10px">
+	                   <input type="checkbox" name="public" id="toggle-2"><label class="dn" for="toggle-2" data-content="ON"> </label> -->
+	                   <div class="ui toggle button">No</div>
+	                   </div>
+	                   </div>
+	                </div>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
-<!-- Advance send -->
+	<!-- Advance send -->
 <div id="editsettings" class="ui small modal">
 	<i class="close icon"></i>
   <div class="header">
-    <i class="send icon dark-red"></i><font color="#892a2c" size="5px"> Advanced Send Request</font>
+    <i class="send icon dark-blue"></i><font color="#892a2c" size="5px"> Advanced Send Request</font>
   </div>
   <div class="content">
-  	<form id="settings" class="ui form" method="POST"> {% csrf_token %}
+  	<form id="settings" class="ui form" method="POST">{% csrf_token %}
 		<div class="ui three fields">
 		<div class="field">
 			<div class="ui selection dropdown">
@@ -215,13 +248,14 @@
 <div id="notfoundhospital" class="ui small modal">
 	<i class="close icon"></i>
 	<div class="ui icon header">
-		<i class="remove circle icon dark-red"></i>
+		<i class="remove circle icon dark-blue"></i>
 		<div class="content" style="font-size:25px; line-height:30px">
-		<div class="dark-red">No Hospitals Found</div>
-		<div class="sub header">Do you want to try again?</div>
+		<div class="dark-blue">No Hospitals Found</div>
+		<div class="sub header">Demand is too high!</div>
 		</div>
 	</div>
 	<div class="actions" style="text-align:center;">
+	There are no hospitals available at the moment. Do you want to try again?<br><br><br>
 	<div id="ok" class="ui green button">Ok</div>
 	<div id="cancel" class="ui red button">Cancel</div>
 	</div>
@@ -231,78 +265,168 @@
 <div id="foundhospital" class="ui small modal">
 	<i class="close icon"></i>
 	<div class="ui icon header">
-		<i class="hospital circle icon dark-red"></i>
+		<i class="hospital circle icon dark-blue"></i>
 		<div class="content" style="font-size:25px; line-height:30px">
-		<div class="dark-red">Found a hospital!</div>
-		<div class="sub header">Here are the details</div>
-	</div>
-	<div class="ui center aligned segment">
+		<div class="dark-blue">Found a hospital!</div>
+		<div class="sub header">Here are the details.</div>
+	</div></div>
+	<center><p>
+		<h1 class="ui header">Makati Medical City</h1>
 		<div class="ui two column grid">
 			<div class="column">
-				<b>Name</b>
-				<div class="ui sub header">St. Peter's Hospital></div>
+				<h4 class="ui header">
+				  <i class="signal icon dark-blue"></i>
+				  <div class="content">Level 1</div>
+				</h4>
 			</div>
 			<div class="column">
-				<b>Name</b>
-				<div class="ui sub header">St. Peter's Hospital></div>
+				<h4 class="ui header">
+				  <i class="call icon dark-blue"></i>
+				  <div class="content">02-634-2352</div>
+				</h4>
 			</div>
 		</div>
-	</div>
+		<div class="ui two column grid">
+			<div class="column">
+				<h4 class="ui header">
+				  <i class="check icon dark-blue"></i>
+				  <div class="content">Philhealth Accredited</div>
+				</h4>
+			</div>
+			<div class="column">
+				<h4 class="ui header">
+				  <i class="marker icon dark-blue"></i>
+				  <div class="content">Makati</div>
+				</h4>
+			</div>
+		</div>
+	</center><br><br>
 	<div class="actions" style="text-align:center;">
 	<div id="okfound" class="ui green button">Ok</div>
-	<div id="okfound" class="ui green button">Send</div>
 	<div id="cancel" class="ui red button">Cancel</div>
 	</div>
 </div>
 
 <!-- Found hospital with send info: key 3 -->
 <div id="foundhospital2" class="ui small modal">
-	Hospital found
-	<div id="okfound2" class="ui gray button">Ok</div>
-	<div id="sendinfo" class="ui green button">Send Info</div>
-	<!-- cancel button -->
+	<i class="close icon"></i>
+	<div class="ui icon header">
+		<i class="hospital circle icon dark-blue"></i>
+		<div class="content" style="font-size:25px; line-height:30px">
+		<div class="dark-blue">Found a hospital!</div>
+		<div class="sub header">Here are the details.</div>
+	</div></div>
+	<center><p>
+		<h1 class="ui header">Makati Medical City*</h1>
+		<div class="ui two column grid">
+			<div class="column">
+				<h4 class="ui header">
+				  <i class="signal icon dark-blue"></i>
+				  <div class="content">Level 1</div>
+				</h4>
+			</div>
+			<div class="column">
+				<h4 class="ui header">
+				  <i class="call icon dark-blue"></i>
+				  <div class="content">02-634-2352</div>
+				</h4>
+			</div>
+		</div>
+		<div class="ui two column grid">
+			<div class="column">
+				<h4 class="ui header">
+				  <i class="check icon dark-blue"></i>
+				  <div class="content">Philhealth Accredited</div>
+				</h4>
+			</div>
+			<div class="column">
+				<h4 class="ui header">
+				  <i class="marker icon dark-blue"></i>
+				  <div class="content">Makati</div>
+				</h4>
+			</div>
+		</div>
+	<br><b>* needs additional info</b><br><br>
+	</center>
+	<div class="actions" style="text-align:center;">
+	<div id="okfound" class="ui gray button">Ok</div>
+	<div id="sendadd" class="ui green button">Send Additional Info</div>
+	<div id="cancel" class="ui red button">Cancel</div>
+	</div>
 </div>
 
 <!-- Search ambulance -->
 <div id="searchambulance" class="ui small modal">
-	<div class="ui text loader">Searching for ambulance</div>
+	<div class="ui large text loader"><h3>Searching for an ambulance...</h3>Press the ESC key to cancel</div>
 	<!-- cancel button -->
 </div>
 
-<!-- Send info -->
-<div id="sendinfo" class="ui small modal">
-	Ajakfafkasfka
-	<div id="okfound" class="ui green button">Ok</div>
-	<!-- cancel button -->
+<!-- Not found ambulance: key 4 -->
+<div id="notfoundambulance" class="ui small modal">
+	<i class="close icon"></i>
+	<div class="ui icon header">
+		<i class="remove circle icon dark-blue"></i>
+		<div class="content" style="font-size:25px; line-height:30px">
+		<div class="dark-blue">No Ambulances Found</div>
+		<div class="sub header">Demand is too high!</div>
+		</div>
+	</div>
+	<div class="actions" style="text-align:center;">
+	There are no ambulances available at the moment. Do you want to try again?<br><br><br>
+	<div id="okambulance" class="ui green button">Ok</div>
+	<div id="cancel" class="ui red button">Cancel</div>
+	</div>
 </div>
 
+<!-- Found ambulance: key 5 -->
+<div id="foundambulance" class="ui small modal">
+	<i class="close icon"></i>
+	<div class="ui icon header">
+		<i class="emergency icon dark-blue"></i>
+		<div class="content" style="font-size:25px; line-height:30px">
+		<div class="dark-blue">Found an ambulance!</div>
+		<div class="sub header">Here are the details.</div>
+	</div></div>
+	<center><p>
+		<!-- <div class="ui centered grid">--><p>
+			<h2><i class="home icon dark-blue"></i>Ospital ng Makati <i class="right arrow icon dark-blue"></i> <i class="hospital icon dark-blue"></i>Makati Medical City</h2>
+			<i class="location marker icon dark-blue"></i><b>Destination from hospital: </b>2 kms<br><br><i class="wait icon dark-blue"></i><b>Estimated Time of Arrival: </b>5 minutes
+		<!-- </div> -->
+	</center><br><br>
+	<div class="actions" style="text-align:center;">
+	<div id="okfoundambu" class="ui green button">Ok</div>
+	<div id="cancel" class="ui red button">Cancel</div>
+	</div>
+</div>
 
 <!-- Transfering -->
 <div id="transferring" class="ui small modal">
 	<i class="close icon"></i>
-	<div class="header">
-    Transfer Request
-  	</div>
-  	<div class="content">
-  		<form id="settings" class="ui form" method="POST">
-		  <div class="inline field"> {% csrf_token %}
-		    <label>From:</label>
-		    <input name="address" placeholder="Hospital Name" type="text">
-		  </div>
-		  <div class="inline field">
-		    <label>Case</label>
-		    <input name="address" value="Cardiovascular" readonly="" type="text">
-		  </div>
-		  
-		   <div class="ui segment">
-    <div class="inline field">
-      <div class="ui toggle checkbox">
-        <input name="gift" tabindex="0" class="hidden" type="checkbox">
-        <label>Need Additional Information</label>
-      </div>
-    </div>
-  </div>
-		  
+	<div class="ui icon header">
+		<i class="right arrow icon dark-blue"></i>
+		<div class="content" style="font-size:25px; line-height:30px">
+		<div class="dark-blue">Transfer Request</div>
+		<div class="sub header">Here are the details</div>
+	</div></div>
+  	<center><p><p>
+		<h3 class="ui header">
+		  <i class="hospital icon dark-blue"></i>
+		  <div class="content">From: St. Luke's Hospital</div>
+		</h3>
+		<h3 class="ui header">
+		  <i class="heart icon dark-blue"></i>
+		  <div class="content"><b>Case: </b>Cardiovascular</div>
+		</h3>
+		<div class="inline field">
+	      <div class="ui toggle checkbox">
+	        <input name="gift" tabindex="0" class="hidden" type="checkbox"><br>
+	        <label>Do you need additional information?</label>
+	      </div>
+	    </div>
+
+	<br><br><br>
+	</center>
+
 		<div class="actions">
   	<!-- may aayusin pa sa cancel button: magrreset dapat yung form kapag cinancel -->
 		    <div class="ui red cancel button">Cancel</div> 
@@ -316,38 +440,141 @@
 <div id="additionalreq" class="ui small modal">
 	<i class="close icon"></i>
 	<div class="header">
-    Additional Request
+    <i class="add circle icon"></i>Additional Request
   	</div>
   	<div class="content">
   		<form id="settings" class="ui form" method="POST">
-		  <div class="inline field"> {% csrf_token %}
-		    <label>Case</label>
-		    <input name="address" value="Cardiovascular" readonly="" type="text">
-		  </div>
+		  <div class="ui two fields">
 		  <div class="inline field">
 		    <label>Needed Equipment</label>
-		    <input name="address" value="Defibrilator" readonly="" type="text">
+		    <input name="address" value="Ex. Defibrilator" type="text">
 		  </div>
 		  <div class="inline field">
-		    <label>Additional Information</label>
-		    <input name="address" value="Prognosis" readonly="" type="text">
+		    <label>Comments</label>
+		    <input name="address" value="Remarks / Prognosis" type="text">
 		  </div>
-		  
+		  </div>
     </div>
 		  
 		<div class="actions">
   	<!-- may aayusin pa sa cancel button: magrreset dapat yung form kapag cinancel -->
-		    <div class="ui red cancel button">Reject</div> 
-		    <div id="transferringsend" class="ui green submit button">Accept</div>
+		<div id="backaddreq" class="ui gray button">Back</div>
+		<div id="sendaddreq" class="ui green button">Send</div>
+		<div id="cancel" class="ui red button">Cancel</div>
+		</div>
+  	</div>
+
+ <!-- Transferring Ambulance -->
+<div id="transferringambu" class="ui small modal">
+	<i class="close icon"></i>
+	<div class="ui icon header">
+		<i class="right arrow icon dark-blue"></i>
+		<div class="content" style="font-size:25px; line-height:30px">
+		<div class="dark-blue">Ambulnce Request</div>
+		<div class="sub header">Here are the details</div>
+	</div></div>
+  	<center><p><p>
+		<h3 class="ui header">
+		  <i class="hospital icon dark-blue"></i>
+		  <div class="content">From: St. Luke's Hospital</div>
+		</h3>
+		<h3 class="ui header">
+		  <i class="heart icon dark-blue"></i>
+		  <div class="content"><b>Case: </b>Cardiovascular</div>
+		</h3>
+		<div class="inline field">
+	      <div class="ui toggle checkbox">
+	        <input name="gift" tabindex="0" class="hidden" type="checkbox"><br>
+	        <label>Do you need additional information?</label>
+	      </div>
+	    </div>
+
+	<br><br><br>
+	</center>
+
+		<div class="actions">
+  	<!-- may aayusin pa sa cancel button: magrreset dapat yung form kapag cinancel -->
+		    <div class="ui red cancel button">Cancel</div> 
+		    <div id="transferringambu" class="ui green submit button">Send</div>
 		</div>
   	</div>
 		</form>	
+	<!-- cancel button -->
 </div>
+<!-- Additional req ambulance -->
+<div id="additionalreq" class="ui small modal">
+	<i class="close icon"></i>
+	<div class="header">
+    <i class="add circle icon"></i>Additional Request
+  	</div>
+  	<div class="content">
+  		<form id="settings" class="ui form" method="POST">
+		  <div class="ui two fields">
+		  <div class="inline field">
+		    <label>Needed Equipment</label>
+		    <input name="address" value="Ex. Defibrilator" type="text">
+		  </div>
+		  <div class="inline field">
+		    <label>Comments</label>
+		    <input name="address" value="Remarks / Prognosis" type="text">
+		  </div>
+		  </div>
+    </div>
+		  
+		<div class="actions">
+  	<!-- may aayusin pa sa cancel button: magrreset dapat yung form kapag cinancel -->
+		<div id="backaddreq2" class="ui gray button">Back</div>
+		<div id="sendaddreq2" class="ui green button">Send</div>
+		<div id="cancel" class="ui red button">Cancel</div>
+		</div>
+  	</div>
 
-</body>
+<!-- Additional request -->
+<div id="additionalinfo" class="ui small modal">
+	<i class="close icon"></i>
+	<div class="header">
+    <i class="add circle icon"></i>Additional Request
+  	</div>
+  	<div class="content">
+  		<form id="settings" class="ui form" method="POST">
+		  <div class="ui two fields">
+		  <div class="inline field">
+		    <label>Needed Equipment</label>
+		    <input name="address" value="Ex. Defibrilator" type="text">
+		  </div>
+		  <div class="inline field">
+		    <label>Comments</label>
+		    <input name="address" value="Remarks / Prognosis" type="text">
+		  </div>
+		  </div>
+    </div>
+		  
+		<div class="actions">
+  	<!-- may aayusin pa sa cancel button: magrreset dapat yung form kapag cinancel -->
+		<div id="back" class="ui gray button">Back</div>
+		<div id="sendaddinfo" class="ui green button">Send</div>
+		<div id="cancel" class="ui red button">Cancel</div>
+		</div>
+  	</div>
 
-  <script>
-$('.ui.dropdown')
+	</body>
+
+	  <script>
+	  $(document)
+	  .ready(function() {
+	  var $toggle  = $('.ui.toggle.button');
+	  $toggle
+	    .state({
+	      text: {
+	        inactive : 'No',
+	        active   : 'Yes'
+	      }
+	    })
+	  ;
+
+	})
+	;
+	$('.ui.dropdown')
   .dropdown()
 ;
 $("#editsettingsbutton").click(function() { // advance send button
@@ -362,9 +589,44 @@ $("#sendbutton").click(function() { // send button lang
 	$('#searchhospital').modal('show');		
 });
 
+
+
 $("#ok").click(function() { // send button lang
 	$('#searchhospital').modal('show');	
 	$('#notfoundhospital').modal('hide');	
+});
+
+$("#sendadd").click(function() { // send button lang
+	$('#foundhospital2').modal('hide');	
+	$('#additionalreq').modal('show');	
+});
+
+$("#back").click(function() { // send button lang
+	$('#additionalinfo').modal('hide');	
+	$('#foundhospital2').modal('show');	
+});
+
+$("#backaddreq").click(function() { // send button lang
+	$('#additionalreq').modal('hide');	
+	$('#transferring').modal('show');	
+});
+
+$("#backaddreq2").click(function() { // send button lang
+	$('#additionalreq2').modal('hide');	
+	$('#transferringambu2').modal('show');	
+});
+$("#sendaddreq2").click(function() { // send button lang
+	$('#additionalreq2').modal('hide');	
+	$('#foundambulance').modal('show');	
+});
+
+$("#sendaddinfo").click(function() { // send button lang
+	$('#additionalinfo').modal('hide');	
+	$('#searchambulance').modal('show');	
+});
+$("#sendaddreq").click(function() { // send button lang
+	$('#additionalreq').modal('hide');	
+	$('#searchambulance').modal('show');	
 });
 
 $(document).keydown(function(n) { // hospital not found #1
@@ -391,6 +653,19 @@ $(document).keydown(function(n) { // hospital found with send info #3
    }
 });
 
+$(document).keydown(function(n) { // not found ambulance #4
+   if (n.keyCode == 52) {
+		$('#searchambulance').modal('hide');
+		$('#notfoundambulance').modal('show');
+   }
+});
+
+$(document).keydown(function(n) { // ambulance found #5
+   if (n.keyCode == 53) {
+		$('#searchambulance').modal('hide');
+		$('#foundambulance').modal('show');
+   }
+});
 
 $(document).keydown(function(n) { // transferring shit
    if (n.keyCode == 54) {
@@ -398,9 +673,20 @@ $(document).keydown(function(n) { // transferring shit
    }
 });
 
+$("#okambulance").click(function() { // send button lang
+	$('#searchambulance').modal('show');	
+	$('#notfoundambulance').modal('hide');	
+});
+
+
 $("#transferringsend").click(function() { // send button lang
 	$('#transferring').modal('hide');
 	$('#additionalreq').modal('show');
+});
+
+$("#transferringambu2").click(function() { // send button lang
+	$('#transferringambu').modal('hide');
+	$('#additionalreq2').modal('show');
 });
 
 $("#additionalreqaccept").click(function() { // send button lang
@@ -412,11 +698,12 @@ $("#additionalreqreject").click(function() { // send button lang
 });
 
 $("#okfound").click(function() { // send button lang
+	$('#foundhospital').modal('hide');
 	$('#searchambulance').modal('show');		
 });
 
-$("#okfound2").click(function() { // send button lang
-	$('#searchambulance').modal('show');		
+$("#okfoundambu").click(function() { // send button lang
+	$('#foundambulance').modal('hide');
 });
 
 $('#yo')

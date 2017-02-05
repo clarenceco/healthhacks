@@ -26,7 +26,9 @@
   <style type="text/css">
     body {
       background-color: #DADADA;
+      background-image: url({% static '122.jpg' %});
     }
+
     body > .grid {
       height: 100%;
     }
@@ -35,6 +37,10 @@
     }
     .column {
       max-width: 450px;
+    }
+    .ui.header > .image, .ui.header > img {
+    width: 11rem;
+    height: 7rem;
     }
   </style>
   <script>
@@ -81,10 +87,7 @@
 <div class="ui middle aligned center aligned grid">
   <div class="column">
     <h2 class="ui teal image header">
-      <img src="{% static 'gh.png' %}" class="image">
-      <div class="content">
-        Log-in
-      </div>
+
     </h2>
     <form class="ui large form" method="POST" action="/home/">
       <div class="ui stacked segment"> {% csrf_token %}
@@ -100,7 +103,7 @@
             <input type="password" name="password" placeholder="Password">
           </div>
         </div>
-        <div class="ui fluid large teal submit button" id = "login">Login</div>
+        <div class="ui fluid large teal submit button">Login</div>
       </div>
 
       <div class="ui error message"></div>
@@ -111,19 +114,5 @@
 </div>
 
 </body>
-<script>
-$("#login").click(function() {
-  function send(){
-      return $.ajax({
-          url: "home/"
-          data: { 'email': email, 'password': password}
 
-      });
-  }
-
-
-});
-
-</script>
 </html>
-

@@ -13,6 +13,9 @@ def Login(request):
 	context = {}
 	return render(request, 'login.html', context)
 
+def Home(request):
+	return render(request, 'landing.html', {'name': "Hospital 1"})
+
 def Landing(request):
 	name = "hsadhasd"
 	if request.method == "POST":
@@ -34,6 +37,10 @@ def View(request):
 	hospitals = Hospital.objects.all()
 	context = {'hospitals':hospitals}
 	return render(request, 'view.html', context)
+
+def Transfer(request):
+	context = {}
+	return render(request, 'transfer.html', context)
 
 def Landing2(request):
 	context = {}
